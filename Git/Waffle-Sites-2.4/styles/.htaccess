@@ -1,2 +1,0 @@
-RewriteEngine on
-AddType application/x-httpd-php .css .html .htm

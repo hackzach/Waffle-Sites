@@ -1,5 +1,0 @@
-<?php
-
-$pageTitle = "Authorization Required.";
-
-?>

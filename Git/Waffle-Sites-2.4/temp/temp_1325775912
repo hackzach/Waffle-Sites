@@ -1,1 +1,0 @@
-<?php $info = $query->update("providers", "Google='116594907765146206288'", "WHERE id='".ID."'", $debug); ?>
