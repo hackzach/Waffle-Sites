@@ -3,8 +3,8 @@ build basic websites, with User, Content, and Layout Management, and Application
 can run basic profiles, as well as styled websites, much like a Tumblr website. 
 
 TO INSTALL:
-Head to /modules/settings.php and set up your Database settings and Janrain RPXNow settings(https://rpxnow.com/), and then import the tables from 
-/modules/tables.sql. From there, you can login and the system will mark you as a user. You musy then head to 
+Head to /modules/settings.php and set up your Database settings and Janrain RPXNow settings(https://rpxnow.com/), 
+and then import the tables from /modules/tables.sql. From there, you can login and the system will mark you as a user. You musy then head to 
 the database and edit your userlevel in table "users" to 4. From then on, you are the Superuser of the website, 
 and can control your website and it's members.
 
