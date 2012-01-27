@@ -29,11 +29,6 @@ CREATE TABLE IF NOT EXISTS `albums` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 --
--- Dumping data for table `albums`
---
--- --------------------------------------------------------
-
---
 -- Table structure for table `chat`
 --
 
