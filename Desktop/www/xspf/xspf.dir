@@ -1,0 +1,9 @@
+#Format:
+#      Use one line per server directory to scan
+#      server path {space} url
+
+/var/www/upload/media http://adelle.rwavechicago.com/upload/media/
+/var/www/upload/share/The Zombies http://adelle.rwavechiacgo.com/upload/share/The%20Zombies
+#
+#
+#EOF#    Leave this line at bottom of file!

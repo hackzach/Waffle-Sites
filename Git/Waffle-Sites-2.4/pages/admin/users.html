@@ -1,0 +1,55 @@
+<p style="text-align: center;">
+	<h2>
+			<?php print $pageTitle; ?>
+	</h2>
+<?php 
+if($edit) {
+?>
+	<table align="center" valign="top">
+		<tr>
+			<td>
+			<form action="users?aid=<?php print $aid; ?>&save" method="post">
+				Username :  <?php print $user['name']; ?><br />
+				Userlevel:<select name="level" />
+							<option value="1"<?php if($user['level'] == '1') print " selected"; ?>>User</option />
+							<option value="2" <?php if($user['level'] == '2') print " selected"; ?>>Designer</option />
+							<option value="3" <?php if($user['level'] == '3') print " selected"; ?>>Admin</option />
+						</select /><br />
+			<input type="submit" value="Save" />
+			</form />
+	</td /></tr /></table />
+	<?php
+		}
+		
+		else {
+
+	?>
+
+	<table align="center" valign="top" border="1">
+	<tr>
+	<?php print $count; ?> users. Pages: <?php print $page_list; ?>
+	<br />
+	<td align="left">
+	
+	<?php print $asc; ?>
+	<?php print $user_list; ?>
+	
+	</td />
+	<td align="right">
+	<small>Profile</small />
+	<br />
+	<br />
+
+	<?php print $profile_list; ?>
+	</td /><td align="left">
+
+	<?php print $userlevel; ?>
+	<?php print $user_level_list; ?>
+	<br />
+	</td />
+	</tr />
+	</table />
+	
+	<?php 
+	}
+	?>

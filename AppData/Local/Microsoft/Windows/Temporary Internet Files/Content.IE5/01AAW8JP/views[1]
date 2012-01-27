@@ -1,0 +1,77 @@
+
+function OnLoad()
+{
+    ViewPanel.addBehavior("#default#mmcview");
+    MMCEvents.ConnectTo(external.Document.Application);
+    UpdateState();
+}
+
+// Prevent text from being selected and messing up the UI.
+function document.onselectstart()
+{
+    event.returnValue = false;
+}
+
+function UpdateState()
+{
+    var strDetails     = "";
+    var strDisplayName = "";
+    var strDescription = "";
+    var i;
+    var curnode;
+    var strNodeType;
+
+    N = external.Selection;
+
+    switch(N.count)
+    {
+    case 0:
+        DisplayNameElem.style.fontWeight="normal";
+        strDetails = "";
+        strDisplayName = L_strNoItemSelected_Text;
+        break;
+
+    case 1:
+        DisplayNameElem.style.fontWeight="bold";
+        strDetails = "";
+        curNode = N(1);
+
+        // got the selected node
+        strNodeType    = curNode.Nodetype;
+        strDisplayName = external.CellContents(curNode, 1);
+        strDescription = curNode.Property("CCF_DESCRIPTION");
+        strDetails     = curNode.Property("CCF_HTML_DETAILS");
+
+        break;
+
+    default: // multiselect
+        DisplayNameElem.style.fontWeight="normal";
+        strDetails = L_strMultipleItemsSelected_Text;
+        break;
+    }
+
+    TaskpadName.innerText = external.ActiveScopeNode.Name;
+    TaskpadName.innerHTML = "<NOBR>" + TaskpadName.innerHTML + "</NOBR>";
+    DisplayNameElem.innerText = strDisplayName;
+    DisplayNameElem.innerHTML += "<BR>";
+
+    if (strDetails != "")
+    {
+        strDetails = "<BR>" + strDetails + "<BR>"
+    }
+
+    DetailsElem.innerHTML = strDetails;
+
+    if (strDescription != "")
+    {
+        strDescription =   L_strDescription_Text  +  strDescription;
+    }
+
+    DescriptionElem.innerText = strDescription;
+}
+
+
+function OnUnload()
+{
+    MMCEvents.Disconnect;
+}

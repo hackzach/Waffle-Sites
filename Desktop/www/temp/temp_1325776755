@@ -1,0 +1,1 @@
+<?php print $query->update("providers", $_SESSION['profile']['providerName']."='".$_SESSION['profile']['identifier']."'", "WHERE id='".$_SESSION['local_id']."'", $debug); ?>

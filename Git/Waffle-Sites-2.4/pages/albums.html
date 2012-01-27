@@ -1,0 +1,36 @@
+<?php
+
+if(isset($pid) && $pid != "") {
+
+$album = $query->select("albums", "*", "WHERE id='$pid' ");
+		echo "<center><a href=\"albums\">Albums</a>   |   <fb:name uid=".$album['owner'].">  |   ".$album['title']."  |   </center><br><br>";
+	$data = explodot($album['data']);
+	
+	for($i=0;$i<count($data);$i++) {
+		echo "<a href=\"player?sid=".$data[$i]."\" class=\"thickbox\">". $album['title'] ."</a><small>   |   
+				<a href=\"albums?remove&sid=".$data[$i]."&pid=".$pid."\">remove</a>   |   </small>
+				<br>";
+	}
+
+}
+
+else {
+
+ /* dbrows needs to be modified in filefunc.php. method query() requires 
+administrative privIledges to run, and dbrows cannot be run as a combined method call. the while() loop will 
+make a query for each pass, causing an infinite loop of queries. The server will choke. */
+
+	$result = $query->query("SELECT * FROM albums WHERE owner='ID' AND id <> '0'");
+	echo "<center><a href=\"uploads\">Uploads</a>   |    All albums   |   <a href=\"albums?new\">New Album</a>   |</center><br><br>";
+	while($row = $query->dbrows($result)) {
+
+		echo "<a href=\"albums?pid=".$row['id']."\">".$row['title']."</a>   |   <a href=\"albums?remove&pid=".$row['id']."\"> remove</a>   |<br>";
+			
+	 
+	
+
+	}
+
+}
+
+?>

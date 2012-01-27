@@ -1,0 +1,50 @@
+<center>
+<div id="content">
+	<h2>Upload Files</h2>
+	<div id="fileSuccess"></div>
+	<form id="form1" action="uploads" method="post" enctype="multipart/form-data">
+		<p>			You can upload a maximum 100MB file.<br>
+			You can only have 50 files in the queue at one time.</p>
+		<p>	<b><span style="color:green; ">Filetypes accepted: </span></b><br>
+				Webpage(<b>html</b>)<br>
+				Image(<b>bmp, jpg, gif, png, jpeg</b>)<br>
+			    and Media(<b>mp3, flv, mp4</b>)<br>
+		</p><br />
+
+			<div class="fieldset flash" id="fsUploadProgress">
+			
+
+				<span class="legend">Upload Queue</span>
+			</div>
+			
+				<div id="fileQueued">0 Queued.</div>
+				<div id="fileComplete">0 Uploaded.</div>
+				<div id="fileSelected" display:none ></div>
+				<div id="errorMessage"></div>
+				<div>
+					<span id="spanButtonPlaceHolder"></span>
+
+					<input id="btnCancel" 
+							type="button" 
+							value="Cancel All Uploads" 
+							onclick="swfu.cancelQueue();"
+							disabled="disabled" 
+							style="margin-left: 2px; font-size: 8pt; height: 25px;" />
+				</div>
+
+	</form>
+
+</div>
+<?php if($debug) { ?>
+<div>
+<h2>OR</h2>
+<b>Old Fashioned Uploader</b>
+<form method="post" action="../uploader" enctype="multipart/form-data">
+		<input type="file" name="Filedata" id="Filedata" />
+		<input type="submit" value="Upload" />
+	</form>
+</div>
+<?php } ?>
+</center>
+</body>
+</html>

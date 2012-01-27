@@ -1,0 +1,3 @@
+
+function DownloadFailure(){this.NONE=0;this.RELIABLESOURCECANTCONTACT=1;this.RELIABLESOURCEBADINTEGRITY=2;this.RELIABLESOURCENOTSPECIFIED=3;this.TRACKERLISTEMPTY=4;this.TRACKERCANTCONTACT=5;this.PEERLISTEMPTY=6;this.PEERNOGOODONES=7;this.CONTENTWRITE=8;this.TRANSPORTHTTP=9;this.TRANSPORTHTTPCLIENT=10;this.TRANSPORTSOCKET=11;}
+DownloadFailure.prototype.nameFromId=function(id){var nameMap=["None","ReliableSourceContact","ReliableSourceBadIntegrity","ReliableSourceNotSpecified","TrackerListEmpty","TrackerContact","PeerListEmpty","PeerNoGoodOnes","ContentWrite","TransportHttp","TransportHttpClient","TransportSocket"];return nameMap[id];};var downloadFailure=new DownloadFailure();

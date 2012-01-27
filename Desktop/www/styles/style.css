@@ -1,0 +1,30 @@
+<?php
+
+$debug = (isset($_GET['debug']) ? true : false);
+
+define("SITE_PATH", substr(realpath(dirname(__FILE__)), 0, strlen(realpath(dirname(__FILE__)))-strlen("/styles")) );
+
+include SITE_PATH."/modules/connect.php";
+include SITE_PATH."/modules/site_include.php";
+
+$style = (isset($_REQUEST['id']) ? addslashes(strip_tags($_REQUEST['id'])) : false);
+
+$url = SITE_PATH."/pages/styles/style.css"; //template html page includes the
+
+if($style) {
+	$style = $query->select("users", "*", "WHERE id='$style'", $debug);
+	if($style) {
+		$bgcolor = $style['theme_bgcolor'];
+		$fontcolor = $style['theme_fontcolor'];
+	}
+}
+if($bgcolor == "" || $fontcolor == "") {
+	$bgcolor = $default_bgcolor;
+	$fontcolor = $default_fontcolor;
+}
+
+header("Content-type: text/css ");
+include $url;	
+
+include SITE_PATH."/modules/foot.php";
+?>

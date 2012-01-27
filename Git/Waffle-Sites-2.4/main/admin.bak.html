@@ -1,0 +1,6 @@
+<?php if($auth->isAdmin()) { ?><?php if("/".$page == "/admin/") { ?><li><b>Home</b></li><?php } else { ?><li><a href="/admin/">Home</a></li><?php } ?><?php } ?>
+<?php if($auth->isAdmin()) { ?><?php if("/".$page == "/admin/scripts") { ?><li><b>Apps</b></li><?php } else { ?><li><a href="/admin/scripts">Apps</a></li><?php } ?><?php } ?>
+<?php if($auth->isAdmin()) { ?><?php if("/".$page == "/admin/pages") { ?><li><b>Pages</b></li><?php } else { ?><li><a href="/admin/pages">Pages</a></li><?php } ?><?php } ?>
+<?php if($auth->isAdmin()) { ?><?php if("/".$page == "/admin/links") { ?><li><b>Links</b></li><?php } else { ?><li><a href="/admin/links">Links</a></li><?php } ?><?php } ?>
+<?php if($auth->isUser()) { ?><?php if("/".$page == "/home/") { ?><li><b>Profile</b></li><?php } else { ?><li><a href="/home/">Profile</a></li><?php } ?><?php } ?>
+<?php if($auth->isUser()) { ?><?php if("/".$page == "/i/admin/content") { ?><li><b>Content</b></li><?php } else { ?><li><a href="/i/admin/content">Content</a></li><?php } ?><?php } ?>

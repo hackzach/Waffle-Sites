@@ -1,0 +1,9 @@
+<?php
+if(!isset($_REQUEST['go'])) {
+?>
+<script type="text/javascript">
+		var Id = 'portTest';
+		HTTPGet("<?php print "$domain/ports?go&ui"; ?>");
+</script>
+<div id="portTest"><h2>Checking configuration of ports(This may take a while)...</h2></div>
+<?php } ?>

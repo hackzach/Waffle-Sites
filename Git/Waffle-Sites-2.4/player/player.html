@@ -1,0 +1,12 @@
+<script type="text/javascript" src="<?php print $domain; ?>/js/jwplayer.js"></script>
+
+<div id="player">Loading Player...</div>
+<script type="text/javascript">
+      var so = new SWFObject('<?php print($domain); ?>/player/player.swf','mpl','350','360','9');
+      so.addParam('allowscriptaccess','always');
+      so.addParam('allowfullscreen','false');
+      so.addParam('bgcolor','#000000');
+      so.addParam('flashvars',<?php echo $flashvar; ?>);
+      so.write('player');
+ </script>
+	  

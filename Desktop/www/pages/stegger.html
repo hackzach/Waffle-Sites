@@ -1,0 +1,37 @@
+<h1 style="color:#000000;">Steganography Application </h1><a href="sexwaffles/stegger/docs/README.html">docs</a>
+<blockquote>
+<form name="steggerForm" method="post" action="stegger" enctype="multipart/form-data">
+  <p>This application will hide data inside an image or extract hidden data from an image,
+     you can either supply the image we are encoding/decoding as a URL or upload an image file.</p>
+
+  <blockquote>
+    <strong>Upload an image file:</strong><br />
+    <input type="file" name="imageFile" size="40" />
+    <h2>OR</h2>
+    <strong>Supply a URL to the image:</strong><br />
+    <input type="text" name="imageURL" size="40" />
+  </blockquote>
+
+  <p>Stegger will encrypt the data before it puts it into the image, this is to insure nobody
+     but the indended parties can extract hidden data from an image, before we can encrypt the
+     data securely we need a key, this is optional.</p>
+
+  <blockquote>
+    <strong>Please provide a key to encrypt/decrypt data:</strong><br />
+    <input type="text" name="key" size="40" />
+  </blockquote>
+
+  <p>Now we need some data to hide in the image you should have provided above, if you are
+     extracting data from an image you can just leave this blank.</p>
+
+  <blockquote>
+    <strong>Upload a secret file:</strong><br />
+    <input type="file" name="secretFile" size="40" />
+    <h2>OR</h2>
+    <strong>Type a secret message to hide in the file:</strong><br />
+    <textarea name="secretMessage" rows="8" cols="90"></textarea>
+  </blockquote>
+
+  <input type="submit" name="submit" value="Submit" /><input type="reset" name="reset" value="Reset" />
+</form>
+</blockquote>

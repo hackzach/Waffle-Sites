@@ -1,0 +1,25 @@
+<script type="text/javascript">
+$(function(){
+			$('#dialog').dialog({
+					autoOpen: true,
+					width: 600,
+					show: "slide",
+					hide: "slide",
+					buttons: {
+						"Ok": function() { 
+							$(this).dialog("close"); 
+						}, 
+						"Cancel": function() { 
+							$(this).dialog("close"); 
+						} 
+					}
+				});
+});
+</script>
+<h2>Profile Home</h2>
+<?php
+
+print($list); 
+
+?>
+</p>

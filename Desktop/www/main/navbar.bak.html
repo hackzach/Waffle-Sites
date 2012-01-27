@@ -1,0 +1,5 @@
+<?php if("/".$page == "/") { ?><li><b>Home</b></li><?php } else { ?><li><a href="/">Home</a></li><?php } ?>
+<?php if($auth->isUser()) { ?><?php if("/".$page == "/friends") { ?><li><b>Friends</b></li><?php } else { ?><li><a href="/friends">Friends</a></li><?php } ?><?php } ?>
+<?php if("/".$page == "/stegger") { ?><li><b>Stegger</b></li><?php } else { ?><li><a href="/stegger">Stegger</a></li><?php } ?>
+<?php if("/".$page == "/rsa") { ?><li><b>Encryptor</b></li><?php } else { ?><li><a href="/rsa">Encryptor</a></li><?php } ?>
+<?php if($auth->isUser()) { ?><?php if("/".$page == "/search") { ?><li><b>Search</b></li><?php } else { ?><li><a href="/search">Search</a></li><?php } ?><?php } ?>

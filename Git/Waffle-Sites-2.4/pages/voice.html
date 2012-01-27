@@ -1,0 +1,16 @@
+						<div align="justify">
+	<p>
+	<?php 
+	if(isset($send)) {
+		//echo $gv->status;
+	}?>
+	</p>
+	
+	<p>
+	<form action="voice?send" method="post">
+	Phone: <input type="text" name="phone" value="<?php print $gv_default_phone; ?>"><br>
+	<textarea name="msg">Type a message.</textarea><br>
+	<input type="submit" value="Send">
+	</form>
+	</p>
+</div>			
