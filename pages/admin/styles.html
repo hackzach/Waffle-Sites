@@ -1,0 +1,203 @@
+<?php
+if($ui) { print"<script type=\"text/javascript\" src=\"$domain/js/js_include-2.4.js\"></script>\n"; }
+?>
+<script language="Javascript" type="text/javascript" src="<?php print $domain; ?>/js/edit_area/edit_area_full.js"></script>
+	<script language="Javascript" type="text/javascript">
+		// initialisation
+		editAreaLoader.init({
+			id: "elm1"	// id of the textarea to transform		
+			,start_highlight: true	// if start with highlight
+			,allow_resize: "both"
+			,allow_toggle: true
+			,word_wrap: true
+			,language: "en"
+			,syntax: "php"	
+		});
+
+		
+		// callback functions
+		function my_save(id, content){
+			alert("Here is the content of the EditArea '"+ id +"' as received by the save callback function:\n"+content);
+		}
+		
+		function my_load(id){
+			editAreaLoader.setValue(id, "The content is loaded from the load_callback function into EditArea");
+		}
+		
+		function test_setSelectionRange(id){
+			editAreaLoader.setSelectionRange(id, 100, 150);
+		}
+		
+		function test_getSelectionRange(id){
+			var sel =editAreaLoader.getSelectionRange(id);
+			alert("start: "+sel["start"]+"\nend: "+sel["end"]); 
+		}
+		
+		function test_setSelectedText(id){
+			text= "[REPLACED SELECTION]"; 
+			editAreaLoader.setSelectedText(id, text);
+		}
+		
+		function test_getSelectedText(id){
+			alert(editAreaLoader.getSelectedText(id)); 
+		}
+		
+		function editAreaLoaded(id){
+			if(id=="example_2")
+			{
+				open_file1();
+				open_file2();
+			}
+		}
+		
+		function open_file1()
+		{
+			var new_file= {id: "to\\ é # € to", text: "$authors= array();\n$news= array();", syntax: 'php', title: 'beautiful title'};
+			editAreaLoader.openFile('example_2', new_file);
+		}
+		
+		function open_file2()
+		{
+			var new_file= {id: "Filename", text: "<a href=\"toto\">\n\tbouh\n</a>\n<!-- it's a comment -->", syntax: 'html'};
+			editAreaLoader.openFile('example_2', new_file);
+		}
+		
+		function close_file1()
+		{
+			editAreaLoader.closeFile('example_2', "to\\ é # € to");
+		}
+		
+		function toogle_editable(id)
+		{
+			editAreaLoader.execCommand(id, 'set_editable', !editAreaLoader.execCommand(id, 'is_editable'));
+		}
+	
+	</script>
+<?php 
+
+$filename = (isset($_REQUEST['p']) ? addslashes(strip_tags($_REQUEST['p'])) : "default");
+
+$fpath = SITE_PATH."/pages/styles/".(isset($dirname) ? $dirname."/" : NULL).$filename.".css"; 
+
+$fileInfo = $query->select("pages", "*", "WHERE id='$filename'", $debug);
+if($fileInfo['id'] == "") $query->insert("pages", "id,title,description,permissions,owner", "'".$filename."','".$filename."','','".$auth->getLevel()."','".ID."'", $debug);
+
+if($delete && $filename != "" ) {
+			if($auth->isSuper() || ($fileInfo['owner'] == ID || $fileInfo['permissions'] <= $auth->getLevel())) {	
+				if($err = file_exists($fpath)) {
+					if(unlink($fpath) === FALSE) $errorHandler = "Could not delete app $filename<br>\n";
+				}
+				if(!$query->delete("pages", "WHERE id='$filename' AND owner='".ID."'", $debug)) $errorHandler = "Could not delete permissions $filename<br>\n";				
+			}
+			else {
+				$errorHandler = "$filename not authorized<br>\n"; 
+
+			}
+print "<script type=\"text/javascript\">window.location='scripts'</script>";
+}
+
+
+	
+	if($edit) {
+ ?>
+
+<form method="post" action="styles?p=<?php print($filename); ?>&save<?php if($ui) print "&ui"; ?>">
+	 <center>--- |  <a href="javascript:popup('<?php print $domain."/".$filename; ?>', '<?php print $filename; ?>', '900', '600');" style="color:<?php print $fontcolor; ?>">View</a> | ---<br>
+<input type="submit" value="Submit"></center>
+	<textarea id="elm1" name="elm1" rows="80" cols="80" style="width: 100%"><?php print htmlentities($file->read($fpath)); ?></textarea>
+</form>
+
+<?php
+}
+else if($save && $filename != "" ) {
+			if($filename == "apps" || $filename == "pages") {
+
+				print "<p align=\"center\">
+					The filename $filename is not allowed Maybe try ".substr($filename, 0, strlen($filename)-1)."?
+				</p>";
+				
+			}
+			else if($auth->isSuper() || ($fileInfo['owner'] == ID || $fileInfo['permissions'] <= $auth->getLevel())) {
+				$pageText = html_entity_decode($_REQUEST['elm1']);
+				if(!$err = $file->write($pageText,$fpath)) {
+	
+					if($err == -2) {
+						print "<p align=\"center\">
+						<span style=\"color:red; background-color:white;\">A handle error occured.</span>
+						</p>";
+					}
+					else if($err == -1) {
+						print "<p align=\"center\">
+						<span style=\"color:red; background-color:white;\">A permission error occured.</span>
+						</p>";
+					}
+					else if($err == 0) {
+						print "<p align=\"center\">
+						<span style=\"color:red; background-color:white;\">A write error occured.</span>
+						</p>";
+					}
+				}
+				else {
+						print "<p align=\"center\">
+						<span style=\"color:green; background-color:white;\">Application Saved.</span>
+						</p>";
+					}
+				
+ ?>
+
+		<form method="post" action="styles?save<?php if($ui) print "&ui"; ?>">	
+			<center>--- |  <a href="javascript:popup('<?php print $domain."/".$filename; ?>', '<?php print $filename; ?>', '900', '600');" style="color:<?php print $fontcolor; ?>">View</a> |<br><input type="submit" value="Submit"></center>
+			<textarea id="elm1" name="elm1" rows="80" cols="80" style="width: 100%"><?php print htmlentities($file->read($fpath)); ?></textarea>
+		</form>
+	<?php
+			}
+			else {
+				print "<p align=\"center\">
+						An authorization error occured.
+						</p>";
+			}
+}
+
+	else if($new) {
+?>
+<form method="post" action="styles?save<?php if($ui) print "&ui"; ?>">
+	 <center>--- |  <input type="text" name="p" value="default"> | ---<br><input type="submit" value="Submit"> </center>
+	<textarea id="elm1" name="elm1" rows="80" cols="80" style="width: 100%"><?php print htmlentities("<?php \$pageTitle = \"New Page\";
+/*put code here*/
+?>"); ?></textarea>
+</form>
+
+<?php
+}
+
+
+else {
+
+print "<h2>".$pageTitle."</h2>";
+
+	print $count." scripts | ";
+	for($i=1;$i<=$pages;$i++) {
+		if($i == $limit) {
+			print "<b>" . $i . "</b /> ";
+		}
+		else {
+			print " <a href=\"styles?pg=" . $i . "\">" . $i . "</a /> ";
+		}
+	}
+	
+	print("<br>\n<br>\n");
+	
+	?>
+		<center>
+		<a href="styles?new&ui&KeepThis=true&TB_iframe=true&height=550&width=900" class="thickbox">
+		<img src="<?php print $domain; ?>/images/gnome/admin/new.png"></img><br>
+		<b>*NEW*</b></a>
+		<br>
+		</center>
+	<?php
+
+	print($list); 
+
+}
+
+?>

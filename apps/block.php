@@ -1,0 +1,5 @@
+<?php
+
+$pageTitle = "Authorization Required.";
+
+?>

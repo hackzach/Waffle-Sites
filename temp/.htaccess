@@ -1,0 +1,15 @@
+
+# Begin password protection #
+AuthUserFile /www/temp/.htpasswd
+AuthName "Password Protected"
+AuthType Basic
+require valid-user
+# End password protection #
+
+
+AuthGroupFile /www/temp/
+
+
+<Limit GET POST>
+
+</Limit>

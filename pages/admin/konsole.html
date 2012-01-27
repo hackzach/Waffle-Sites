@@ -1,0 +1,43 @@
+<p style="text-align: center;">
+<h2><?php print $pageTitle; ?></h2>
+<table border='1' width='100%'>
+<tr>
+<td>
+<center>
+<form action="<?php echo $c; ?>" method="post">
+<input type="submit" value="Execute">
+<br><br>
+<?php
+
+if($phparse != NULL || $codee) {
+	eval(" ?>
+		<table style='color: white; background-color: black' border='1' width='100%'>
+			<tr>
+				<td>
+					<br>". 
+					stripslashes(kparse( ($phparse != NULL ? $phparse : ($codee ? read(SITE_PATH."/temp/$rand_file") : "")) , $c))
+					."<br>
+				</td>
+			</tr>
+		</table>
+	<?php ");
+
+	($phparse != NULL ? savefile($phparse, SITE_PATH."/temp/$rand_file") : false);
+}
+
+?>
+<textarea style="color: white; background-color: black" rows="15" cols="100" width="100%" name="c">
+<?php print stripslashes(no_parse(  ($phparse != NULL ? $phparse : ($codee ? read(SITE_PATH."/temp/$rand_file") : ""))   )); ?>
+</textarea><br>
+Temporary Code URL: <%code%><br>
+Server IP: <%IP_S%><br>
+Visitor IP: <%IP_V%><br>
+Random Number: <%rand%><br>
+Date: <%date%><br>
+Current Working Directory: <%path%><br>
+</form>
+</center>
+</td>
+</tr>
+</table>
+</p>

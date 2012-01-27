@@ -1,0 +1,75 @@
+<p style="text-align: center;">
+	<h2>
+			<?php print $pageTitle; ?>
+	</h2>
+<form name="settings" enctype="multipart/form-data" action="settings" method="POST">
+<table width="100%" height="auto">
+		<td align="left" width="33%">
+					<div>
+						<p>
+							Site Name: <br> | 
+							<input name="title" type="text" value="<?php print $title; ?>">
+							<br>
+							Slogan: <br> |
+							<textarea name="slogan" rows="3 cols="10"><?php print $slogan; ?></textarea>
+							<br>
+									Janrain App ID:  <br> | 
+									<input name="app_id" type="text" value="<?php print $rpx_api_id; ?>">
+									<br>
+									Janrain App Secret:<br> | 
+									<input name="secret" type="text" value="<?php print $rpx_api_key; ?>">
+									<br>
+							
+							Default Background Color: <br> | 
+							<input name="default_bg_color" type="text" value="<?php print $default_bgcolor; ?>">
+							<br>
+							Default Font Color<br> | 
+							<input name="default_font_color" type="text" value="<?php print $default_fontcolor; ?>">
+							<br><br>
+						</p>
+					</div>
+		</td>
+		
+	<td width="33%">
+					<div>
+						<p>
+							MYSQL Server: <br> | 
+							<input name="mysql_server" type="text" value="<?php print $mysql_host; ?>">
+							<br>
+							MYSQL DB: <br> | 
+							<input name="mysql_db" type="text" value="<?php print $mysql_database; ?>">
+							<br>
+							MYSQL user: <br> | 
+							<input name="mysql_user" type="text" value="<?php print $mysql_user; ?>">
+							<br>
+							MYSQL password: <br> | 
+							<input name="mysql_password" type="password" value="<?php print $mysql_password; ?>"> 
+							<br><br>
+							Software Updates URL: <br> | 
+							<input name="update_url" type="text" value="<?php print $get_software_update; ?>">
+							<br>
+						</p>
+					</div>
+		</td>
+	<td width="33%">
+					<div>
+						<p>
+							Google Phone #: <br> |
+							<input name="default_phone" type="text" value="<?php print $gv_default_phone; ?>">
+							<br>
+								Google Voice&copy; Email: <br> | 
+								<input name="gv_email" type="text" value="<?php print $gv_email; ?>"> 
+								<br>
+									Google Voice&copy; password: <br> | 
+									<input name="gv_password" type="password" value="<?php print $gv_password; ?>">
+									
+						</p>
+					</div>
+				</tr>
+</table>
+
+
+<div align="center">
+	<input name="save" value="Save" type="submit"><input name="revert" value="revert" type="submit">
+</div>
+</form>

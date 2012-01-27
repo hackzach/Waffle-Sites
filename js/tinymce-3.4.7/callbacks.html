@@ -1,0 +1,12 @@
+<center><!-- Some integration calls -->
+		<a href="javascript:;" onclick="$('#elm1').tinymce().show();return false;" style="color:<?php print $fontcolor; ?>">Show</a> | 
+		<a href="javascript:;" onclick="$('#elm1').tinymce().hide();return false;" style="color:<?php print $fontcolor; ?>">Hide</a> | 
+		<a href="javascript:;" onclick="$('#elm1').tinymce().execCommand('Bold');return false;" style="color:<?php print $fontcolor; ?>">Bold</a> | 
+		<a href="javascript:;" onclick="alert($('#elm1').html());return false;" style="color:<?php print $fontcolor; ?>">Get contents</a> | 
+		<a href="javascript:;" onclick="alert($('#elm1').tinymce().selection.getContent());return false;" style="color:<?php print $fontcolor; ?>">Get selected HTML</a> | 
+		<a href="javascript:;" onclick="alert($('#elm1').tinymce().selection.getContent({format : 'text'}));return false;" style="color:<?php print $fontcolor; ?>">Get selected text</a> | 
+		<a href="javascript:;" onclick="alert($('#elm1').tinymce().selection.getNode().nodeName);return false;" style="color:<?php print $fontcolor; ?>">Get selected element</a> | 
+		<a href="javascript:;" onclick="$('#elm1').tinymce().execCommand('mceInsertContent',false,'<%DOMAIN%>');return false;" style="color:<?php print $fontcolor; ?>">Insert tags</a> | 
+		<a href="javascript:;" onclick="$('#elm1').tinymce().execCommand('mceReplaceContent',false,'<b>{$selection}</b>');return false;" style="color:<?php print $fontcolor; ?>">Replace selection</a>
+
+<br /></center>

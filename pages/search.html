@@ -1,0 +1,18 @@
+<center><b>Search</b /><br />
+<form action="search">
+<div id="txtHint"></div />
+<input type="text" name="query" onkeyup="query(this.value)" />
+<select name="type" />
+<option value="name" <?php print ($type = "name" ? "selected" : ""); ?> />Name</option />
+<option value="id" <?php print ($type = "id" ? "selected" : ""); ?> />id</option />
+</select />
+<input type="submit" value="Search" />
+</form />
+</center />
+
+<br>
+<br>
+<br>
+<br>
+
+<div id="get"><?php print $results; ?></div />

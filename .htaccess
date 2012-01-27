@@ -1,0 +1,20 @@
+ErrorDocument 403 /403
+ErrorDocument 404 /404
+ErrorDocument 500 "Server made a boo-boo."
+
+<FilesMatch "\.(js|css|jpg|jpeg|png|gif|swf)$">
+    Header set Cache-Control "max-age=604800, public"
+</FilesMatch>
+
+<FilesMatch "\.(js|css|xml|gz)$">
+    Header append Vary Accept-Encoding
+</FilesMatch>
+
+AddOutputFilter DEFLATE js css
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+#RewriteRule ^(.*?)\.html$ index.php?page=$1 [QSA] 
+RewriteRule ^(.*)$ index.php?page=$1 [L,QSA] 
